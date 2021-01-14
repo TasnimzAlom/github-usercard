@@ -1,11 +1,24 @@
+
+import axios from "axios";
+
+// axios.get(" https://api.github.com/users/TasnimzAlom")
+axios.get(" https://api.github.com/users/CarlosColindres")
+  .then(response => {
+  console.log(response.data)
+})
+
+  .catch(error => {
+  console.log(error.message)
+})
+
 /*
-  STEP 1: using axios, send a GET request to the following URL
+  ********STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
 
 /*
-  STEP 2: Inspect and study the data coming back, this is YOUR
+ ********* STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
     data in order to use it to build your component function
 
@@ -13,7 +26,7 @@
 */
 
 /*
-  STEP 4: Pass the data received from Github into your function,
+ ********* STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
 
@@ -38,6 +51,7 @@ const followersArray = [];
       <img src={image url of user} />
       <div class="card-info">
         <h3 class="name">{users name}</h3>
+
         <p class="username">{users user name}</p>
         <p>Location: {users location}</p>
         <p>Profile:
@@ -49,6 +63,67 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function cardMaker(userData) {
+  const card = document.createElement("div");
+  const myImg = document.createElement("img");
+  const info = document.createElement("div");
+  const name = document.createElement("h3");
+  const uName = document.createElement("p");
+  const locat = document.createElement("p");
+  const prof = document.createElement("p");
+  const aTag = document.createElement("a");
+  const folls = document.createElement("p");
+  const follg = document.createElement("p");
+  const biog = document.createElement("p");
+
+  card.classList.add("card");
+  info.classList.add("card-info");
+  name.classList.add("name")
+  uName.classList.add("username");
+
+  myImg.setAttribute("src", userData.avatar_url);
+  name.textContent = userData.name;
+  uName.textContent = userData.login;
+  locat.textContent = userData.location;
+  prof.textContent = "profile: "
+  aTag.setAttribute("href", userData.html_url);
+  folls.textContent = userData.followers;
+  follg.textContent = userData.following;
+  biog.textContent = userData.bio;
+
+  card.appendChild(myImg);
+  card.appendChild(info);
+  info.appendChild(name);
+  info.appendChild(uName);
+  info.appendChild(locat);
+  info.appendChild(prof);
+  prof.appendChild(aTag);
+  info.appendChild(folls);
+  info.appendChild(follg);
+  info.appendChild(biog);
+ 
+  return card;
+
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
   List of LS Instructors Github username's:
