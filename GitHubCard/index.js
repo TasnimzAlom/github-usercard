@@ -1,10 +1,11 @@
 
 import axios from "axios";
 
-// axios.get(" https://api.github.com/users/TasnimzAlom")
-axios.get(" https://api.github.com/users/CarlosColindres")
+axios.get("https://api.github.com/users/TasnimzAlom")
+
   .then(response => {
-  console.log(response.data)
+    console.log(response.data)
+    cardss.appendChild(cardMaker(response.data));
 })
 
   .catch(error => {
@@ -41,7 +42,30 @@ axios.get(" https://api.github.com/users/CarlosColindres")
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  "ndossett",
+  "CPower1248",
+  "sebastian-espeset",
+  "matt22881",
+  "CarlosColindres"
+];
+
+
+const cardss = document.querySelector(".cards");
+
+followersArray.forEach(user => {
+  
+  axios.get(`https://api.github.com/users/${user}`)
+
+    .then(response => {
+    
+      cardss.appendChild(cardMaker(response.data));
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
+
+});
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -106,21 +130,6 @@ function cardMaker(userData) {
   return card;
 
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
